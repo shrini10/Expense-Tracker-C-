@@ -1,0 +1,47 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Expense {
+    string category;
+    double amount;
+};
+
+vector<Expense> expenses;
+
+void addExpense() {
+    Expense e;
+    cout << "Enter category: ";
+    cin >> e.category;
+    cout << "Enter amount: ";
+    cin >> e.amount;
+    expenses.push_back(e);
+    cout << "✅ Expense added!\n";
+}
+
+void viewExpenses() {
+    double total = 0;
+    cout << "\n📊 Expense Summary:\n";
+    for (const auto &e : expenses) {
+        cout << e.category << ": $" << e.amount << "\n";
+        total += e.amount;
+    }
+    cout << "💰 Total Spent: $" << total << "\n";
+}
+
+int main() {
+    int choice;
+    do {
+        cout << "\n1️⃣ Add Expense\n2️⃣ View Expenses\n3️⃣ Exit\nChoose an option: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1: addExpense(); break;
+            case 2: viewExpenses(); break;
+            case 3: cout << "📌 Exiting Expense Tracker.\n"; break;
+            default: cout << "❌ Invalid choice! Try again.\n";
+        }
+    } while (choice != 3);
+    
+    return 0;
+}
